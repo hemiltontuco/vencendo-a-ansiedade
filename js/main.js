@@ -33,3 +33,35 @@ document.addEventListener("DOMContentLoaded", () => {
   wireCTAs();
   setYear();
 });
+
+// Track GA4 clicks em CTAs
+(function () {
+  function trackCtaClicks() {
+    const buttons = document.querySelectorAll("[data-cta-id]");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Se GA não estiver carregado, não quebra nada
+        if (typeof window.gtag !== "function") return;
+
+        const ctaId = btn.getAttribute("data-cta-id") || "unknown";
+        const ctaLabel = (btn.textContent || "").trim() || "unknown";
+        const ctaSection = btn.getAttribute("data-cta-section") || "unknown";
+        const href = btn.getAttribute("href") || "";
+
+        window.gtag("event", "cta_click", {
+          cta_id: ctaId,
+          cta_label: ctaLabel,
+          cta_section: ctaSection,
+          link_url: href
+        });
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", trackCtaClicks);
+  } else {
+    trackCtaClicks();
+  }
+})();
+
