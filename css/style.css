@@ -40,13 +40,114 @@ img{max-width:100%;height:auto;display:block}
   display:inline-flex; align-items:center; justify-content:center;
   padding:13px 18px; border-radius:12px; border:0; cursor:pointer;
   font-weight:800; letter-spacing:.02em; text-decoration:none;
-  transition: transform .12s ease, filter .12s ease;
+  transition: all .3s ease;
   user-select:none;
+  position: relative;
+  overflow: hidden;
 }
-.btn:active{transform: translateY(1px);}
-.btn.primary{background:linear-gradient(180deg, var(--purple), var(--purple-700)); color:#fff;}
-.btn.green{background:linear-gradient(180deg, #2f9e44, var(--green-700)); color:#fff;}
-.btn.outline{background:transparent; border:1px solid var(--line); color:var(--ink);}
+
+.btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
+.btn:active{
+  transform: translateY(0px);
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
+}
+
+.btn.primary{
+  background:linear-gradient(180deg, var(--purple), var(--purple-700)); 
+  color:#fff;
+}
+
+.btn.primary:hover{
+  background:linear-gradient(180deg, #9333ea, #7c3aed);
+}
+
+.btn.green{
+  background:linear-gradient(180deg, #2f9e44, var(--green-700)); 
+  color:#fff;
+  position: relative;
+}
+
+.btn.green::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn.green:hover {
+  background: linear-gradient(180deg, #38a952, #1b5e20);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+}
+
+.btn.green:hover::before {
+  left: 100%;
+}
+
+.btn.green:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.2);
+}
+
+.btn.outline{
+  background:transparent; 
+  border:1px solid var(--line); 
+  color:var(--ink);
+}
+
+.btn.outline:hover{
+  background: var(--card);
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+/* Animação de pulso para botões de conversão importantes */
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+  }
+  50% {
+    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.5);
+  }
+  100% {
+    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+  }
+}
+
+/* Efeito especial para CTAs principais */
+.btn.green.pulse {
+  animation: pulse-green 2s infinite;
+}
+
+/* Efeito de brilho nos botões principais */
+.btn.green::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  transform: scale(0);
+  transition: transform 0.6s ease;
+}
+
+.btn.green:hover::after {
+  transform: scale(1);
+}
+
+/* Micro animação no texto do botão */
+.btn:hover {
+  letter-spacing: .03em;
+}
 
 .hero{
   padding:56px 0 10px;
