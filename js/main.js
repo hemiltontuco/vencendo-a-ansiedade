@@ -65,3 +65,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })();
 
+// Função para controlar o acordeom FAQ
+function toggleFAQ(element) {
+  const faqItem = element.parentElement;
+  const answer = faqItem.querySelector('.faq-answer');
+  const icon = element.querySelector('.faq-icon');
+  
+  // Toggle da classe active
+  faqItem.classList.toggle('active');
+  
+  // Animação do ícone
+  if (faqItem.classList.contains('active')) {
+    answer.style.maxHeight = answer.scrollHeight + "px";
+    icon.textContent = "−";
+  } else {
+    answer.style.maxHeight = "0px";
+    icon.textContent = "+";
+  }
+}
+
