@@ -365,14 +365,17 @@ img{max-width:100%;height:auto;display:block}
   border-radius: 12px;
   overflow: hidden;
   background: #f8fafc;
-  padding: 20px;
+  padding: 0;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bonus-image img {
   width: 100%;
-  height: auto;
-  max-width: 200px;
-  margin: 0 auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
