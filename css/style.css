@@ -171,8 +171,8 @@ img{max-width:100%;height:auto;display:block}
 
 .intro{
   color:#2d2e83;
-  font-weight:600;
-  font-size: clamp(16px, 2vw, 20px);
+  font-weight:400;
+  font-size: 23px;
   line-height:1.7;
   margin:0;
 }
