@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checklist Gratuito: 7 Sinais de Ansiedade — Landing Page</title>
+  <meta name="description" content="Descubra os 7 sinais de que sua ansiedade já está te sabotando e o que fazer hoje para retomar o controle." />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #2d2e83;
+      background: linear-gradient(135deg, #f5f3ff 0%, #e8f5e8 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .content-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #2d2e83 0%, #3f51b5 100%);
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+
+    .header .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+      transform: scale(1.05);
+      animation: pulse 2s infinite;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4); }
+      50% { transform: scale(1.1); box-shadow: 0 12px 35px rgba(46, 125, 50, 0.6); }
+      100% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4); }
+    }
+
+    .main-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 15px;
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .subtitle {
+      font-size: 24px;
+      font-weight: 600;
+      color: #4ade80;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+
+    .section {
+      padding: 60px 20px;
+      margin-bottom: 0;
+    }
+
+    .section.para-quem {
+      background: linear-gradient(135deg, #f8f9ff 0%, #f0f4f8 100%);
+      padding: 40px 20px 60px;
+      border-top: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .section:not(.para-quem):nth-child(even) {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .section:not(.para-quem):nth-child(odd) {
+      background: rgba(248, 249, 255, 0.5);
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 600;
+      color: #2d2e83;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .checklist {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .checklist li {
+      padding: 15px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 18px;
+      color: #555;
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .checklist li:before {
+      content: "•";
+      color: #2e7d32;
+      font-weight: bold;
+      font-size: 24px;
+      position: absolute;
+      left: 15px;
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .benefits {
+      background: rgba(242, 245, 255, 0.8);
+      border-radius: 15px;
+      padding: 40px;
+      margin: 40px 0;
+      border: 2px solid rgba(45, 46, 131, 0.1);
+    }
+
+    .benefits h3 {
+      font-size: 24px;
+      color: #2d2e83;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .benefits-list {
+      list-style: none;
+    }
+
+    .benefits-list li {
+      padding: 12px 0;
+      font-size: 18px;
+      color: #2d2e83;
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .benefits-list li:before {
+      content: "✔️";
+      position: absolute;
+      left: 10px;
+    }
+
+    .form-section {
+      background: linear-gradient(135deg, #2d2e83 0%, #3f51b5 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 40px;
+      margin: 0;
+      position: relative;
+    }
+
+    .form-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+
+    .form-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form {
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: white;
+      color: #333;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+
+    .submit-btn {
+      background: #2e7d32;
+      color: white;
+      padding: 18px 40px;
+      font-size: 20px;
+      font-weight: 700;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #1b5e20;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(46, 125, 50, 0.4);
+    }
+
+    .privacy-note {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .final-message {
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 22px;
+      color: #2d2e83;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.8);
+      margin-top: 0;
+    }
+
+    .emphasis {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 0 10px 10px 0;
+      font-size: 18px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+
+    .cta-between {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(46, 125, 50, 0.05);
+      border-top: 1px solid rgba(46, 125, 50, 0.1);
+      border-bottom: 1px solid rgba(46, 125, 50, 0.1);
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      color: white;
+      padding: 18px 35px;
+      font-size: 20px;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+      animation: pulse-green 3s infinite;
+    }
+
+    .cta-btn:hover {
+      background: linear-gradient(135deg, #1b5e20 0%, #0d4412 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(46, 125, 50, 0.5);
+    }
+
+    @keyframes pulse-green {
+      0% { box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3); }
+      50% { box-shadow: 0 12px 35px rgba(46, 125, 50, 0.5); }
+      100% { box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3); }
+    }
+
+    /* Responsividade */
+    @media screen and (max-width: 768px) {
+      .main-title {
+        font-size: 36px;
+      }
+
+      .subtitle {
+        font-size: 20px;
+      }
+
+      .description {
+        font-size: 18px;
+      }
+
+      .header {
+        padding: 50px 20px 30px;
+      }
+
+      .section {
+        padding: 50px 20px;
+      }
+
+      .section.para-quem {
+        padding: 30px 20px 50px;
+      }
+
+      .form-section {
+        padding: 60px 20px;
+      }
+
+      .content-wrapper {
+        padding: 0 15px;
+      }
+
+      .badge {
+        font-size: 16px;
+        padding: 12px 25px;
+      }
+
+      .cta-between {
+        padding: 30px 20px;
+      }
+
+      .cta-btn {
+        font-size: 18px;
+        padding: 16px 30px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .main-title {
+        font-size: 28px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      .description {
+        font-size: 16px;
+      }
+
+      .header {
+        padding: 40px 20px 25px;
+      }
+
+      .checklist li, .benefits-list li {
+        font-size: 16px;
+      }
+
+      .form-title {
+        font-size: 28px;
+      }
+
+      .section {
+        padding: 40px 15px;
+      }
+
+      .section.para-quem {
+        padding: 25px 15px 40px;
+      }
+
+      .form-section {
+        padding: 50px 15px;
+      }
+
+      .badge {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+
+      .cta-btn {
+        font-size: 16px;
+        padding: 14px 25px;
+      }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDFZ0RR1NG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EDFZ0RR1NG');
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="content-wrapper">
+        <div class="badge">✨ Checklist gratuito ✨</div>
+        <h1 class="main-title">7 sinais de que a ansiedade já está te sabotando</h1>
+        <div class="subtitle">(e o que fazer HOJE para retomar o controle)</div>
+        <p class="description">
+          Se você sente que algo está errado, mas não sabe explicar exatamente o quê —
+          este checklist vai te ajudar a entender o que está acontecendo no seu corpo e por onde começar, sem se forçar.
+        </p>
+      </div>
+    </div>
+
+    <!-- PARA QUEM É -->
+    <div class="section para-quem">
+      <div class="content-wrapper">
+        <h2 class="section-title">Este checklist é para você se:</h2>
+        <ul class="checklist">
+          <li>Sente um aperto no peito ou um nó no estômago sem motivo claro</li>
+          <li>Tem pensamentos que se repetem mesmo quando "não fazem sentido"</li>
+          <li>Se sente cansado(a), mas com a mente sempre ligada</li>
+          <li>Evita situações simples com medo da ansiedade piorar</li>
+          <li>Tem a sensação constante de que algo ruim pode acontecer</li>
+        </ul>
+        
+        <div class="emphasis">
+          <strong>Se você se identificou com 2 ou mais itens, este material foi feito para você.</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA BUTTON -->
+    <div class="cta-between">
+      <div class="content-wrapper">
+        <a href="#checklist-form" 
+           onclick="document.getElementById('checklist-form').scrollIntoView({behavior: 'smooth'}); return false;"
+           class="cta-btn"
+           data-cta-id="cta_meio"
+           data-cta-section="meio_pagina">
+          📥 BAIXAR O CHECKLIST GRATUITO AGORA
+        </a>
+      </div>
+    </div>
+
+    <!-- O QUE VAI ENCONTRAR -->
+    <div class="section">
+      <div class="content-wrapper">
+        <div class="benefits">
+          <h3>O que você vai encontrar no checklist:</h3>
+          <ul class="benefits-list">
+            <li>Os 7 sinais mais ignorados de ansiedade em modo de alerta</li>
+            <li>Explicações simples (sem termos clínicos)</li>
+            <li>O que fazer hoje, de forma segura e possível</li>
+            <li>Um primeiro passo para sair do modo sobrevivência</li>
+          </ul>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+          <p style="font-size: 20px; color: #2d2e83; margin-bottom: 10px;"><strong>Nada de promessas milagrosas.</strong></p>
+          <p style="font-size: 22px; color: #2e7d32; font-weight: 600;"><strong>Apenas clareza e direção.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMULÁRIO -->
+    <div class="form-section">
+      <div class="content-wrapper">
+        <div class="form-title">
+          <span class="icon">📩</span>
+          Baixe agora gratuitamente
+        </div>
+        
+        <form class="form" action="#" method="POST" id="checklist-form">
+          <div class="form-group">
+            <label class="form-label" for="nome">Nome:</label>
+            <input type="text" class="form-input" id="nome" name="nome" required placeholder="Seu primeiro nome">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="email">Email:</label>
+            <input type="email" class="form-input" id="email" name="email" required placeholder="seu@email.com">
+          </div>
+
+          <button type="submit" class="submit-btn">
+            QUERO RECEBER O CHECKLIST
+          </button>
+        </form>
+
+        <div class="privacy-note">
+          🔒 Seu email está seguro. Você pode sair da lista quando quiser.<br>
+          📄 Material digital em PDF. Leitura rápida.<br><br>
+          <small>📌 O checklist será enviado diretamente para o seu email.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENSAGEM FINAL -->
+    <div class="final-message">
+      <div class="content-wrapper">
+        Se você sente que sua ansiedade está te controlando —<br>
+        <strong>este é um bom lugar para começar.</strong>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configuração Google Apps Script - ÚNICO MÉTODO DE INTEGRAÇÃO
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAfAK4mvEwK_65vfpTGLYzIAGMgyvkmBzVQ6ZSv50MszGLY9iKCMO4Fe2kyS7EVNqXcg/exec';
+
+    document.getElementById('checklist-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const submitBtn = document.querySelector('.submit-btn');
+      
+      if (!nome || !email) {
+        alert('Por favor, preencha todos os campos!');
+        return;
+      }
+      
+      // Mostra loading
+      submitBtn.innerHTML = 'ENVIANDO...';
+      submitBtn.disabled = true;
+      
+      // Enviar APENAS para Google Apps Script
+      sendToGoogleAppsScript(nome, email, submitBtn);
+    });
+
+    // Função principal - Enviar para Google Apps Script
+    function sendToGoogleAppsScript(nome, email, submitBtn) {
+      console.log('🚀 Iniciando envio para Google Apps Script:', nome, email);
+      console.log('🔗 URL:', GOOGLE_SCRIPT_URL);
+      
+      // Validação básica
+      if (!nome.trim() || !email.trim()) {
+        console.error('❌ Dados inválidos:', { nome, email });
+        showError(submitBtn, 'Dados obrigatórios ausentes');
+        return;
+      }
+      
+      // Criar objeto URLSearchParams
+      const params = new URLSearchParams();
+      params.append('nome', nome.trim());
+      params.append('email', email.trim());
+      params.append('timestamp', new Date().toISOString());
+      params.append('source', 'checklist-ansiedade-LP');
+      
+      console.log('📊 Parâmetros enviados:', params.toString());
+      console.log('📊 Iniciando requisição...');
+      
+      // Envio com timeout personalizado
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => {
+        controller.abort();
+        console.error('⏰ Timeout na requisição');
+        showError(submitBtn, 'Timeout - tente novamente');
+      }, 15000); // 15 segundos de timeout
+      
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: params,
+        mode: 'cors',
+        signal: controller.signal
+      })
+      .then(response => {
+        clearTimeout(timeoutId);
+        console.log('📊 Response recebida:');
+        console.log('📊 Status:', response.status, response.statusText);
+        console.log('📊 Headers:', [...response.headers.entries()]);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        return response.text();
+      })
+      .then(text => {
+        console.log('📊 Response body (raw):', text);
+        
+        try {
+          const data = JSON.parse(text);
+          console.log('📊 Response JSON:', data);
+          
+          if (data.result === 'success') {
+            console.log('✅ SUCESSO TOTAL! Lead salvo e email enviado');
+            showSuccess(nome, submitBtn);
+            trackConversion();
+          } else {
+            console.error('❌ Falha no processamento:', data.message);
+            showError(submitBtn, data.message || 'Erro no servidor');
+          }
+        } catch (parseError) {
+          console.error('❌ Erro ao parsear JSON:', parseError);
+          console.error('❌ Conteúdo recebido:', text);
+          
+          // Se não é JSON mas contém indicadores de sucesso
+          if (text && (text.includes('success') || text.includes('salvo'))) {
+            console.log('⚠️ Resposta não-JSON mas parece sucesso');
+            showSuccess(nome, submitBtn);
+            trackConversion();
+          } else {
+            showError(submitBtn, 'Erro ao processar resposta');
+          }
+        }
+      })
+      .catch(error => {
+        clearTimeout(timeoutId);
+        console.error('❌ ERRO CRÍTICO:', error);
+        console.error('❌ Stack trace:', error.stack);
+        
+        let errorMessage = 'Erro de conexão';
+        if (error.name === 'AbortError') {
+          errorMessage = 'Timeout - tente novamente';
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+          errorMessage = 'Erro de rede - verifique sua conexão';
+        }
+        
+        showError(submitBtn, errorMessage);
+      });
+    }
+
+    function showSuccess(nome, submitBtn) {
+      console.log('✅ SUCESSO TOTAL! Mostrando mensagem de sucesso...');
+      
+      submitBtn.innerHTML = '✅ ENVIADO COM SUCESSO!';
+      submitBtn.style.background = '#2e7d32';
+      submitBtn.style.transform = 'scale(1.05)';
+      
+      // Adiciona animação de sucesso
+      submitBtn.style.animation = 'pulse 0.6s ease-in-out';
+      
+      // Mensagem adicional para o usuário
+      const form = document.getElementById('checklist-form');
+      const successMsg = document.createElement('div');
+      successMsg.style.cssText = `
+        background: #e8f5e9;
+        border: 2px solid #2e7d32;
+        color: #1b5e20;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        text-align: center;
+        font-weight: bold;
+      `;
+      successMsg.innerHTML = `
+        🎉 Perfeito, ${nome}!<br>
+        <small>📧 Checklist enviado para seu email!</small><br>
+        <small>Redirecionando para download em <span id="countdown">3</span>s...</small>
+      `;
+      
+      form.appendChild(successMsg);
+      
+      // Countdown
+      let count = 3;
+      const countdownEl = document.getElementById('countdown');
+      const countdownInterval = setInterval(() => {
+        count--;
+        if (countdownEl) countdownEl.textContent = count;
+        if (count <= 0) {
+          clearInterval(countdownInterval);
+          // Redireciona para página de obrigado com download automático
+          window.location.href = 'obrigado.html?nome=' + encodeURIComponent(nome);
+        }
+      }, 1000);
+    }
+
+    function showError(submitBtn, message = '') {
+      submitBtn.innerHTML = '❌ ERRO - TENTE NOVAMENTE';
+      submitBtn.style.background = '#d32f2f';
+      
+      console.error('🚨 Erro no envio:', message);
+      
+      // Mostra mensagem de erro mais detalhada
+      const form = document.getElementById('checklist-form');
+      const errorMsg = document.createElement('div');
+      errorMsg.style.cssText = `
+        background: #ffebee;
+        border: 2px solid #d32f2f;
+        color: #c62828;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        text-align: center;
+        font-weight: bold;
+      `;
+      errorMsg.innerHTML = `
+        ❌ Ops! Algo deu errado.<br>
+        <small>${message || 'Tente novamente em alguns segundos'}</small>
+      `;
+      
+      form.appendChild(errorMsg);
+      
+      setTimeout(() => {
+        submitBtn.innerHTML = 'QUERO RECEBER O CHECKLIST';
+        submitBtn.disabled = false;
+        submitBtn.style.background = '';
+        submitBtn.style.transform = '';
+        
+        // Remove mensagem de erro
+        if (errorMsg.parentNode) {
+          errorMsg.parentNode.removeChild(errorMsg);
+        }
+      }, 4000);
+    }
+
+    function trackConversion() {
+      // Google Analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', {
+          event_category: 'lead_generation',
+          event_label: 'checklist_gratuito',
+          value: 1
+        });
+      }
+      
+      console.log('📊 Conversão registrada');
+    }
+  </script>
+</body>
+</html>

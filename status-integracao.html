@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Status da Integração</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f3ff 0%, #e8f5e8 100%);
+            margin: 0;
+        }
+        .status-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 5px solid;
+        }
+        .success { 
+            background: #e8f5e9; 
+            border-color: #2e7d32; 
+            color: #1b5e20;
+        }
+        .error { 
+            background: #ffebee; 
+            border-color: #d32f2f; 
+            color: #c62828;
+        }
+        .warning { 
+            background: #fff3e0; 
+            border-color: #f57c00; 
+            color: #ef6c00;
+        }
+        .info { 
+            background: #e3f2fd; 
+            border-color: #1976d2; 
+            color: #0d47a1;
+        }
+        button {
+            background: #2e7d32;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .logs {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            margin: 15px 0;
+        }
+        .config-info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 13px;
+        }
+        h1 { color: #2d2e83; }
+        h2 { color: #2e7d32; margin-top: 30px; }
+        .icon { font-size: 20px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="status-container">
+        <h1>🧪 Dashboard de Status - Captura de Leads</h1>
+        
+        <div class="test-section">
+            <h2>📊 Configurações Atuais</h2>
+            <div class="config-info" id="config-info">
+                Carregando configurações...
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🚀 Testes Rápidos</h2>
+            <button onclick="testarGoogleSheets()">📊 Testar Google Apps Script</button>
+            <button onclick="verificarConexoes()">🔍 Verificar URLs</button>
+            <button onclick="limparLogs()">🗑️ Limpar Logs</button>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 Status dos Componentes</h2>
+            <div id="status-components">
+                <div class="status-item info">
+                    <span class="icon">⏳</span>
+                    Verificando componentes...
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>📝 Logs de Debug</h2>
+            <div class="logs" id="logs">
+                Sistema iniciado...\n
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔗 Links Rápidos</h2>
+            <a href="checklist-gratuito.html" target="_blank">
+                <button>🎯 Abrir Landing Page</button>
+            </a>
+            <a href="teste-integracao.html" target="_blank">
+                <button>🧪 Página de Testes</button>
+            </a>
+            <a href="obrigado.html" target="_blank">
+                <button>✅ Página Obrigado</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Configurações (apenas Google Apps Script)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAfAK4mvEwK_65vfpTGLYzIAGMgyvkmBzVQ6ZSv50MszGLY9iKCMO4Fe2kyS7EVNqXcg/exec';
+
+        function log(message, type = 'info') {
+            const logs = document.getElementById('logs');
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️';
+            logs.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            logs.scrollTop = logs.scrollHeight;
+            console.log(message);
+        }
+
+        function limparLogs() {
+            document.getElementById('logs').textContent = 'Logs limpos...\n';
+        }
+
+        function updateStatus(component, status, message) {
+            const container = document.getElementById('status-components');
+            const existing = document.querySelector(`[data-component="${component}"]`);
+            
+            if (existing) {
+                existing.remove();
+            }
+            
+            const statusClass = status === 'success' ? 'success' : 
+                               status === 'error' ? 'error' : 
+                               status === 'warning' ? 'warning' : 'info';
+            
+            const icon = status === 'success' ? '✅' : 
+                        status === 'error' ? '❌' : 
+                        status === 'warning' ? '⚠️' : 'ℹ️';
+            
+            const div = document.createElement('div');
+            div.className = `status-item ${statusClass}`;
+            div.setAttribute('data-component', component);
+            div.innerHTML = `<span class="icon">${icon}</span>${component}: ${message}`;
+            
+            container.appendChild(div);
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            mostrarConfiguracoes();
+            verificarConexoes();
+        });
+
+        function mostrarConfiguracoes() {
+            const configInfo = document.getElementById('config-info');
+            configInfo.innerHTML = `
+                <strong>Google Apps Script (ÚNICO MÉTODO):</strong><br>
+                ${GOOGLE_SCRIPT_URL}<br><br>
+                <strong>Funcionalidades:</strong><br>
+                ✅ Salvar leads na planilha Google Sheets<br>
+                ✅ Enviar email automático com PDF<br>
+                ✅ Logs detalhados para debug
+            `;
+        }
+
+        async function verificarConexoes() {
+            log('🔍 Verificando conexão com Google Apps Script...', 'info');
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                if (response.ok) {
+                    updateStatus('Google Apps Script', 'success', 'URL acessível');
+                    log('✅ Google Apps Script URL está acessível', 'success');
+                } else {
+                    updateStatus('Google Apps Script', 'warning', `HTTP ${response.status}`);
+                    log(`⚠️ Google Apps Script retornou status ${response.status}`, 'warning');
+                }
+            } catch (error) {
+                updateStatus('Google Apps Script', 'error', 'Não acessível - Verifique se o script está implantado');
+                log(`❌ Erro ao conectar Google Apps Script: ${error.message}`, 'error');
+                log('💡 DICA: Verifique se o Google Apps Script foi implantado corretamente', 'warning');
+            }
+        }
+
+        async function testarGoogleSheets() {
+            log('🚀 Testando Google Apps Script completo...', 'info');
+            
+            const testData = {
+                nome: 'Teste Status Dashboard',
+                email: `teste.dashboard.${Date.now()}@exemplo.com`,
+                timestamp: new Date().toISOString(),
+                source: 'dashboard-status'
+            };
+
+            log(`📊 Dados de teste: ${JSON.stringify(testData)}`, 'info');
+
+            const params = new URLSearchParams();
+            Object.keys(testData).forEach(key => {
+                params.append(key, testData[key]);
+            });
+
+            try {
+                log('📡 Enviando requisição...', 'info');
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: params
+                });
+
+                log(`📊 Status da resposta: ${response.status} ${response.statusText}`, 'info');
+
+                const text = await response.text();
+                log(`📊 Resposta completa: ${text}`, 'info');
+
+                try {
+                    const data = JSON.parse(text);
+                    log(`📊 JSON parseado: ${JSON.stringify(data, null, 2)}`, 'info');
+                    
+                    if (data.result === 'success') {
+                        updateStatus('Teste Google Apps Script', 'success', 'Funcionando perfeitamente!');
+                        log('✅ SUCESSO TOTAL! Lead salvo na planilha E email enviado!', 'success');
+                        log(`📧 Email enviado: ${data.data?.emailSent ? 'SIM' : 'NÃO'}`, data.data?.emailSent ? 'success' : 'warning');
+                    } else {
+                        updateStatus('Teste Google Apps Script', 'error', data.message);
+                        log(`❌ Falha: ${data.message}`, 'error');
+                    }
+                } catch (e) {
+                    updateStatus('Teste Google Apps Script', 'warning', 'Resposta não-JSON');
+                    log('⚠️ Resposta não é JSON válido, mas pode ter funcionado', 'warning');
+                }
+            } catch (error) {
+                updateStatus('Teste Google Apps Script', 'error', error.message);
+                log(`❌ ERRO CRÍTICO: ${error.message}`, 'error');
+                
+                if (error.message.includes('network') || error.message.includes('fetch')) {
+                    log('💡 SOLUÇÃO: Verifique se o Google Apps Script está implantado corretamente', 'info');
+                    log('💡 Acesse script.google.com > Implantar > Nova implantação > Tipo: Aplicativo da Web', 'info');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

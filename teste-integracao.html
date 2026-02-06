@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Integração</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        button {
+            background: #2e7d32;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            width: 100%;
+        }
+        button:hover {
+            background: #1b5e20;
+        }
+        .log {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Teste de Integração - Captura de Leads</h1>
+        
+        <h3>Dados de Teste:</h3>
+        <input type="text" id="nome" placeholder="Nome de teste" value="João Teste">
+        <input type="email" id="email" placeholder="Email de teste" value="joao.teste@gmail.com">
+        
+        <h3>Testes:</h3>
+        <button onclick="testarGoogleSheets()">🔗 Testar Google Apps Script</button>
+        <button onclick="limparLogs()">🗑️ Limpar Logs</button>
+        
+        <h3>Logs:</h3>
+        <div id="logs" class="log">Logs aparecerão aqui...</div>
+    </div>
+
+    <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAfAK4mvEwK_65vfpTGLYzIAGMgyvkmBzVQ6ZSv50MszGLY9iKCMO4Fe2kyS7EVNqXcg/exec';
+
+        function log(message) {
+            const logs = document.getElementById('logs');
+            const timestamp = new Date().toLocaleTimeString();
+            logs.textContent += `[${timestamp}] ${message}\n`;
+            logs.scrollTop = logs.scrollHeight;
+            console.log(message);
+        }
+
+        function limparLogs() {
+            document.getElementById('logs').textContent = 'Logs limpos...\n';
+        }
+
+        function testarGoogleSheets() {
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            
+            log('🚀 Iniciando teste Google Apps Script...');
+            log(`📊 URL: ${GOOGLE_SCRIPT_URL}`);
+            log(`👤 Dados: nome="${nome}", email="${email}"`);
+            
+            const params = new URLSearchParams();
+            params.append('nome', nome);
+            params.append('email', email);
+            params.append('timestamp', new Date().toISOString());
+            params.append('source', 'teste-manual');
+            
+            log(`📊 Parâmetros: ${params.toString()}`);
+            
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: params
+            })
+            .then(response => {
+                log(`📊 Response Status: ${response.status} ${response.statusText}`);
+                return response.text();
+            })
+            .then(text => {
+                log(`📊 Response Text: ${text}`);
+                try {
+                    const data = JSON.parse(text);
+                    log(`📊 Response JSON: ${JSON.stringify(data, null, 2)}`);
+                    if (data.result === 'success') {
+                        log('✅ Google Apps Script: SUCESSO! Lead salvo e email enviado!');
+                    } else {
+                        log(`❌ Google Apps Script: ERRO - ${data.message}`);
+                    }
+                } catch (e) {
+                    log(`❌ Google Apps Script: Erro ao parsear JSON - ${e.message}`);
+                }
+            })
+            .catch(error => {
+                log(`❌ Google Apps Script: Erro de rede - ${error.message}`);
+            });
+        }
+    </script>
+</body>
+</html>
