@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistente de Regulação Mente Serena - Avaliação Emocional Gratuita</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Identifique seu estado emocional atual através de 6 perguntas simples e receba direcionamentos personalizados para regulação da ansiedade. Ferramenta gratuita do Protocolo Mente Serena.">
+    <meta name="keywords" content="ansiedade, regulação emocional, mente serena, bem-estar mental, avaliação emocional, protocolo ansiedade">
+    <meta name="author" content="Mente Serena">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://menteserena.online/assistente-mente-serena/">
+    <meta property="og:title" content="Assistente de Regulação Mente Serena">
+    <meta property="og:description" content="Identifique seu estado emocional e receba direcionamentos personalizados para regular a ansiedade">
+    <meta property="og:site_name" content="Mente Serena">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://menteserena.online/assistente-mente-serena/">
+    <meta property="twitter:title" content="Assistente de Regulação Mente Serena">
+    <meta property="twitter:description" content="Ferramenta gratuita para avaliar seu estado emocional atual">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    
+    <!-- Preload crítico -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Assistente de Regulação Mente Serena",
+        "description": "Ferramenta de avaliação emocional para identificar estados de ansiedade e receber direcionamentos personalizados",
+        "url": "https://menteserena.online/assistente-mente-serena/",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "Mente Serena",
+            "url": "https://menteserena.online"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- TELA 1: Introdução -->
+        <div id="tela-inicial" class="tela ativa">
+            <div class="card">
+                <h1>Assistente de Regulação<br>Mente Serena</h1>
+                <p class="texto-explicativo">
+                    Este assistente vai identificar seu estado emocional atual através de 6 perguntas simples e sugerir direcionamentos específicos para este momento.
+                </p>
+                <p class="subtexto">
+                    Responda com sinceridade baseado no que você está sentindo agora.
+                </p>
+                <button id="btn-iniciar" class="btn-principal">Iniciar Avaliação</button>
+            </div>
+        </div>
+
+        <!-- TELA 2: Questionário -->
+        <div id="tela-questionario" class="tela">
+            <div class="card">
+                <div class="progresso">
+                    <div class="barra-progresso">
+                        <div id="progresso-fill" class="progresso-fill"></div>
+                    </div>
+                    <span id="pergunta-contador">1 de 6</span>
+                </div>
+
+                <form id="formulario-avaliacao">
+                    <!-- Pergunta 1 -->
+                    <div class="pergunta" data-pergunta="1">
+                        <h3>Estou sentindo sintomas físicos agora (aperto no peito, tensão, falta de ar).</h3>
+                        <div class="escala">
+                            <label class="opcao-escala">
+                                <input type="radio" name="q1" value="0">
+                                <span class="opcao-texto">0 - Nada</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q1" value="1">
+                                <span class="opcao-texto">1 - Pouco</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q1" value="2">
+                                <span class="opcao-texto">2 - Moderado</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q1" value="3">
+                                <span class="opcao-texto">3 - Intenso</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pergunta 2 -->
+                    <div class="pergunta" data-pergunta="2">
+                        <h3>Minha mente está acelerada ou com pensamentos repetitivos.</h3>
+                        <div class="escala">
+                            <label class="opcao-escala">
+                                <input type="radio" name="q2" value="0">
+                                <span class="opcao-texto">0 - Nada</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q2" value="1">
+                                <span class="opcao-texto">1 - Pouco</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q2" value="2">
+                                <span class="opcao-texto">2 - Moderado</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q2" value="3">
+                                <span class="opcao-texto">3 - Intenso</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pergunta 3 -->
+                    <div class="pergunta" data-pergunta="3">
+                        <h3>Estou evitando algo por medo de piorar.</h3>
+                        <div class="escala">
+                            <label class="opcao-escala">
+                                <input type="radio" name="q3" value="0">
+                                <span class="opcao-texto">0 - Nada</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q3" value="1">
+                                <span class="opcao-texto">1 - Pouco</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q3" value="2">
+                                <span class="opcao-texto">2 - Moderado</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q3" value="3">
+                                <span class="opcao-texto">3 - Intenso</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pergunta 4 -->
+                    <div class="pergunta" data-pergunta="4">
+                        <h3>Sinto que algo ruim pode acontecer.</h3>
+                        <div class="escala">
+                            <label class="opcao-escala">
+                                <input type="radio" name="q4" value="0">
+                                <span class="opcao-texto">0 - Nada</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q4" value="1">
+                                <span class="opcao-texto">1 - Pouco</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q4" value="2">
+                                <span class="opcao-texto">2 - Moderado</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q4" value="3">
+                                <span class="opcao-texto">3 - Intenso</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pergunta 5 -->
+                    <div class="pergunta" data-pergunta="5">
+                        <h3>Estou mentalmente sobrecarregado(a) ou confuso(a).</h3>
+                        <div class="escala">
+                            <label class="opcao-escala">
+                                <input type="radio" name="q5" value="0">
+                                <span class="opcao-texto">0 - Nada</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q5" value="1">
+                                <span class="opcao-texto">1 - Pouco</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q5" value="2">
+                                <span class="opcao-texto">2 - Moderado</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q5" value="3">
+                                <span class="opcao-texto">3 - Intenso</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Pergunta 6 -->
+                    <div class="pergunta" data-pergunta="6">
+                        <h3>O que mais incomoda agora?</h3>
+                        <div class="escala especial">
+                            <label class="opcao-escala">
+                                <input type="radio" name="q6" value="corpo">
+                                <span class="opcao-texto">Corpo</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q6" value="mente">
+                                <span class="opcao-texto">Pensamentos</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q6" value="evitacao">
+                                <span class="opcao-texto">Medo</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q6" value="ameaca">
+                                <span class="opcao-texto">Sensação de Perigo</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q6" value="sobrecarga">
+                                <span class="opcao-texto">Exaustão</span>
+                            </label>
+                            <label class="opcao-escala">
+                                <input type="radio" name="q6" value="naose">
+                                <span class="opcao-texto">Não sei</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="botoes-navegacao">
+                        <button type="button" id="btn-anterior" class="btn-secundario" disabled>Anterior</button>
+                        <button type="button" id="btn-proximo" class="btn-principal" disabled>Próximo</button>
+                        <button type="button" id="btn-finalizar" class="btn-principal" style="display: none;" disabled>Ver Resultado</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- TELA 3: Resultado -->
+        <div id="tela-resultado" class="tela">
+            <div class="card resultado">
+                <h2>Seu estado predominante agora é:</h2>
+                <h1 id="estado-principal" class="estado-titulo"></h1>
+                <p id="estado-descricao" class="estado-explicacao"></p>
+
+                <div class="secao-direcionamento">
+                    <h3>Direcionamento recomendado agora:</h3>
+                    <div id="lista-materiais" class="lista-materiais"></div>
+                </div>
+
+                <div class="secao-audio">
+                    <h3>Áudio sugerido:</h3>
+                    <div id="lista-audios" class="lista-audios"></div>
+                </div>
+
+                <div class="cta-protocolo">
+                    <p class="texto-protocolo">
+                        Esses direcionamentos fazem parte do <strong>Protocolo Mente Serena</strong>.
+                    </p>
+                    <a href="https://menteserena.online/vencendo-a-ansiedade/" 
+                       target="_blank" 
+                       class="btn-comprar"
+                       onclick="trackCTAClick()">
+                        Quero acessar o Protocolo por R$ 29,90
+                    </a>
+                </div>
+
+                <button id="btn-refazer" class="btn-secundario">Fazer Nova Avaliação</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
